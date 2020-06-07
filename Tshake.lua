@@ -1072,6 +1072,10 @@ os.execute('wget https://raw.githubusercontent.com/TshAkETEAM/Tshakex/master/Tsh
 os.exit()
 return false
 end
+if text == "تحديث" and DevTshake(msg) then
+dofile("Tshake.lua")  
+send(msg.chat_id_, msg.id_, "☑┇تم التحديث")
+end
 if text == "تفعيل"  then
 function TSby(extra,result,success)
 info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKEX')..')\n'
@@ -2566,6 +2570,31 @@ os.execute('rm -rf Tshake.lua')
 os.execute('wget https://raw.githubusercontent.com/TshAkETEAM/Tshakex/master/Tshake.lua')
 os.exit()
 return false
+end
+if text == "تحديث ♻" then
+dofile("Tshake.lua")  
+send(msg.chat_id_, msg.id_, "☑┇تم التحديث")
+end
+end
+end --- Chat_Type = 'UserBot' 
+end
+end
+function tdcli_update_callback(data)
+if data.ID == "UpdateChannel" then 
+if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
+database:srem(bot_id..'Tshake:Chek:Groups','-100'..data.channel_.id_)  
+end
+end
+if (data.ID == "UpdateNewMessage") then
+local msg = data.message_
+local text = msg.content_.text_
+if msg.date_ and msg.date_ < tonumber(os.time() - 30) then
+print("OLD MESSAGE")
+return false
+end
+if msg.sender_user_id_ and Muted_Groups(msg.chat_id_,msg.sender_user_id_) then 
+DeleteMessage(msg.chat_id_, {[0] = msg.id_})  
+return false  
 end
 if text:match("^وضع وقت (%d+)$") then
 local a = {string.match(text, "^(وضع وقت) (%d+)$")}
