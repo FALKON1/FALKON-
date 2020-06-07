@@ -1072,10 +1072,6 @@ os.execute('wget https://raw.githubusercontent.com/TshAkETEAM/Tshakex/master/Tsh
 os.exit()
 return false
 end
-if text == "تحديث" and DevTshake(msg) then
-dofile("Tshake.lua")  
-send(msg.chat_id_, msg.id_, "☑┇تم التحديث")
-end
 if text == "تفعيل"  then
 function TSby(extra,result,success)
 info = '👤┇بواسطه ← ['..result.first_name_..'](t.me/'..(result.username_ or 'TSHAKEX')..')\n'
@@ -7884,6 +7880,10 @@ local text =  [[
 ‏📡┇Ch ~⪼ @TSHAKEX
 ]]
 send(msg.chat_id_, msg.id_, 1, (h4 or text), 1, 'html')
+end
+if text == "تحديث" and DevTshake(msg) then
+dofile("Tshake.lua")  
+send(msg.chat_id_, msg.id_, "☑┇تم التحديث")
 end
 if text:match("^اصدار$") or text:match("^الاصدار$") or text:match("^السورس$") or text:match("^سورس$") then
 local text =  [[
